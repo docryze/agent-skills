@@ -6,6 +6,7 @@ description: 本地服务生命周期管理 — tmux session/window 操作、启
 # tmux 本地服务生命周期管理
 
 标准化管理本地服务的启动、重启、状态检查与停止。
+采用乐观启动原则，按需排查原则来启动依赖服务
 
 ---
 
@@ -143,3 +144,5 @@ curl -s -o /dev/null -w "%{http_code}" http://localhost:<port>
 
 ### 端口验证
 不要只看 `has-session`（窗口存活不代表进程存活），必须 `lsof -ti:<port>` 确认。
+### 项目启动
+mavne项目不要用mvn install;而是直接只用 mvn clean spring-boot:run -pl <module-name> -am -DskipTests;-am就会编译打包最新的代码
